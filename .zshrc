@@ -22,6 +22,23 @@ alias d='docker'
 alias dup='docker compose up -d'
 alias ddown='docker compose down'
 
+drmall(){
+# Stop all containers
+    docker stop `docker ps -qa`
+
+# Remove all containers
+    docker rm `docker ps -qa`
+
+# Remove all images
+    docker rmi -f `docker images -qa `
+
+# Remove all volumes
+    docker volume rm $(docker volume ls -qf)
+
+# Remove all networks
+    docker network rm `docker network ls -q`
+}
+
 export ZSH="$HOME/.oh-my-zsh"
 
 lup(){
